@@ -35,7 +35,7 @@
 # Solution
 
 ## Approach
-- Check whether the input integer is negative or zero, and return `false or `true`, respectively.
+- Check whether the input integer is negative or zero, and return `false` or `true`, respectively.
 - Reverse the digits of the input integer by repeatedly extracting the last digit and adding it to a new variable in reverse order.
 - Compare the original input integer with the reversed integer and return true if they are equal, and false otherwise.
 
