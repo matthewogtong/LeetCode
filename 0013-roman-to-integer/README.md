@@ -52,3 +52,53 @@ M             1000</pre>
 	<li>It is <strong>guaranteed</strong>&nbsp;that <code>s</code> is a valid roman numeral in the range <code>[1, 3999]</code>.</li>
 </ul>
 </div>
+
+# Solution Details
+
+## Approach
+- Create a dictionary that maps each Roman numeral character to its integer value.
+- Initialize a variable `result` to 0 and a variable `previousValue` to 0.
+- Iterate over each character `c` in the input string `s`:
+- Check if the integer value of `c` is greater than the integer value of the previous character `previousValue`.
+- If it is, subtract twice the integer value of `previousValue` from the integer value of `c`, and add the result to `result`.
+- If it is not, add the integer value of `c` to `result`.
+- Update the value of `previousValue` to the integer value of `c`.
+- Return the final value of `result`.
+
+## complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(1)$$
+
+# Code
+```
+class Solution {
+    func romanToInt(_ s: String) -> Int {
+        let romanDict: [Character: Int] = [
+            "I": 1,
+            "V": 5,
+            "X": 10,
+            "L": 50,
+            "C": 100,
+            "D": 500,
+            "M": 1000
+        ]
+        var result = 0
+        var previousNumber = 0
+
+        for c in s {
+            if let value = romanDict[c] {
+                if value > previousNumber {
+                    result += value - (2 * previousNumber)
+                } else {
+                    result += value
+                }
+                previousNumber = value
+            }
+        }
+        return result
+    }
+}
+```
