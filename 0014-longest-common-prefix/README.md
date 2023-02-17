@@ -25,3 +25,35 @@
 	<li><code>strs[i]</code> consists of only lowercase English letters.</li>
 </ul>
 </div>
+
+# Solution Details
+
+# Approach
+- Initialize the `prefix` variable to the first string in the array.
+- Iterate over the remaining strings in the array, and for each string:
+  - Check if it starts with the `prefix` string.
+  - If it does not, remove the last character from `prefix` using the `removeLast()` method until it matches the start of the current string.
+- Return the final value of `prefix`, which is the longest common prefix among all the strings in the array, or an empty string if no common prefix exists.
+
+# Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(1)$$
+
+# Code
+```
+class Solution {
+    func longestCommonPrefix(_ strs: [String]) -> String {
+        var prefix = strs[0]
+        for str in strs {
+            while !str.hasPrefix(prefix) {
+                prefix.removeLast()
+                if prefix.isEmpty { return "" }
+            }
+        }
+        return prefix
+    }
+}
+```
