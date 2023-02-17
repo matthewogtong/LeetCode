@@ -1,8 +1,9 @@
 # LeetCode Solutions in Swift
 
 This repository contains my solutions to various LeetCode problems, implemented in the Swift programming language.
+I am using [Leethub](https://github.com/meolu/walle) as a tool to integrate my LeetCode solutions into this repository and adding my own solution details to each problem.
 
-Each problem is stored in its own file, with the filename corresponding to the problem number and a brief description of the problem. For example, the solution to problem #14, "Longest Common Prefix," is stored in the file `014-longest-common-prefix.swift`.
+Each problem is stored in its own file, with the filename corresponding to the problem number and a brief description of the problem. For example, the solution to problem #14, "Longest Common Prefix," is stored in the file `0014-longest-common-prefix.swift`.
 
 In each file, you'll find a Swift implementation of the solution, along with comments and step-by-step explanations of how the solution works. Some solutions may include multiple implementations with varying time and space complexities.
 
