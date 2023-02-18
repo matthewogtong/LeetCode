@@ -35,3 +35,50 @@
 	<li><code>s</code> consists of parentheses only <code>'()[]{}'</code>.</li>
 </ul>
 </div>
+
+# Solution Details
+
+# Approach
+- Create an empty stack to keep track of opening brackets.
+- Traverse the input string one character at a time.
+- If the current character is an opening bracket ('(', '{', '['), push it onto the stack.
+- If the current character is a closing bracket (')', '}', ']'), check if it matches the most recent opening bracket on the stack. If it does not match, or if the stack is empty, return false.
+- At the end, if the stack is empty, return true. Otherwise, return false.
+
+# Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(n)$$
+
+# Code
+```
+class Solution {
+    func isValid(_ s: String) -> Bool {
+        var stack = [Character]()
+        
+        for char in s {
+            switch char {
+                case "(", "{", "[":
+                    stack.append(char)
+                case ")":
+                    if stack.isEmpty || stack.removeLast() != "(" {
+                        return false
+                    }
+                case "}":
+                    if stack.isEmpty || stack.removeLast() != "{" {
+                        return false
+                    }
+                case "]":
+                    if stack.isEmpty || stack.removeLast() != "[" {
+                        return false
+                    }
+                default:
+                    return false
+            }
+        }
+        return stack.isEmpty
+    }
+}
+```
