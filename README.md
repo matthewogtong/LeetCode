@@ -15,10 +15,10 @@ Also, please keep in mind that the solutions provided here are not necessarily t
 I'd like to thank the following resources for helping me improve my skills in Swift and algorithmic problem solving:
 
 - [LeetCode](https://leetcode.com/) for providing a wide variety of challenging and thought-provoking programming problems.
-- [Swift.org](https://swift.org/) for providing extensive documentation and resources on the Swift programming language.
-- [Hacking with Swift](https://www.hackingwithswift.com/) for providing a wealth of free educational content on Swift development.
-- [Swift Algorithms Club](https://github.com/raywenderlich/swift-algorithm-club) for providing high-quality Swift implementations of common algorithms and data structures.
-- [SwiftLint](https://github.com/realm/SwiftLint) for providing a helpful tool for maintaining consistent coding style and best practices in Swift.
 - [Leethub](https://github.com/meolu/walle) for providing a tool to easily integrate my LeetCode solutions with my GitHub repository.
+- [Swift.org](https://swift.org/) for providing extensive documentation and resources on the Swift programming language.
+- [Swift Algorithms Club](https://github.com/raywenderlich/swift-algorithm-club) for providing high-quality Swift implementations of common algorithms and data structures.
+- [Hacking with Swift](https://www.hackingwithswift.com/) for providing a wealth of free educational content on Swift development.
+- [SwiftLint](https://github.com/realm/SwiftLint) for providing a helpful tool for maintaining consistent coding style and best practices in Swift.
 
 If you're working on LeetCode problems yourself, I highly recommend checking out these resources to help improve your skills and knowledge of Swift and algorithmic problem solving.
