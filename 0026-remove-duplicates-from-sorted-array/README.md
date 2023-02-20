@@ -49,3 +49,41 @@ It does not matter what you leave beyond the returned k (hence they are undersco
 	<li><code>nums</code> is sorted in <strong>non-decreasing</strong> order.</li>
 </ul>
 </div>
+<br/>
+
+# Solution Details
+
+## Approach
+- Initialize i to 0
+- Loop through the array from index 1
+- If current element != previous element, set element at i+1 to current element, increment i
+- Continue loop until end of array
+- Return i+1 as the number of unique elements in the array
+
+## Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(1)$$
+
+## Code
+```
+class Solution {
+    func removeDuplicates(_ nums: inout [Int]) -> Int {
+        guard nums.count > 1 else {
+            return nums.count
+        }
+
+        var k = 1
+
+        for i in 1..<nums.count {
+            if nums[i] != nums[k - 1] {
+                nums[k] = nums[i]
+                k += 1
+            }
+        }
+        return k
+    }
+}
+```
