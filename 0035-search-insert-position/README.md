@@ -31,3 +31,43 @@
 	<li><code>-10<sup>4</sup> &lt;= target &lt;= 10<sup>4</sup></code></li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize a `start` variable to 0 and an `end` variable to the last index of the `nums` array.
+- While `start` is less than or equal to `end`, calculate the `mid` index.
+- If the `target` is equal to the number at the `mid` index, return `mid` as the answer.
+- If the `target` is less than the number at the `mid` index, set `end` to `mid` - 1.
+- If the target is greater than the number at the `mid` index, set `start` to `mid` + 1.
+- After the loop has finished, return the start variable as the answer. This is because if the `target` was not found in the array, start is the index where it should be inserted.
+
+## Complexity
+- Time complexity:
+$$O(log n)$$
+
+- Space complexity:
+$$O(1)$$
+
+## Code
+```
+class Solution {
+    func searchInsert(_ nums: [Int], _ target: Int) -> Int {
+        var start = 0
+        var end = nums.count - 1
+
+        while start <= end {
+            let mid = (start + end) / 2
+            if target == nums[mid] {
+                return mid
+            } else if target < nums[mid] {
+                end = mid - 1
+            } else {
+                start = mid + 1
+            }
+        }
+        return start
+    }
+}
+```
