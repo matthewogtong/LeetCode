@@ -47,7 +47,7 @@ $$O(log10(x))$$
 $$O(n)$$
 
 # Code
-```
+```swift
 class Solution {
     func isPalindrome(_ x: Int) -> Bool {
         if x < 0 {
