@@ -33,3 +33,41 @@
 	<li>There will be at least one word in <code>s</code>.</li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Trim the input string to remove any leading or trailing spaces.
+- Starting from the end of the trimmed string, count the length of the last word until you reach a space or the beginning of the string.
+- Return the length of the last word.
+
+## Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(1)$$
+
+## Code
+```
+class Solution {
+    func lengthOfLastWord(_ s: String) -> Int {
+        
+        // Trim the input string
+        let trimmedString = s.trimmingCharacters(in: .whitespaces)
+    
+        var length = 0
+    
+        // Starting from the end of the string, count the length of the last word
+        for char in trimmedString.reversed() {
+            if char == " " {
+                break
+            }
+            length += 1
+        }
+    
+        return length
+    }
+}
+```
