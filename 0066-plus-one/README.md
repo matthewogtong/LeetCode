@@ -39,3 +39,45 @@ Thus, the result should be [1,0].
 	<li><code>digits</code> does not contain any leading <code>0</code>'s.</li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Traverse the given array digits from the right end, starting with the least significant digit.
+- Add 1 to the least significant digit (last element of the array).
+- If the sum is less than or equal to 9, update the last element with the sum and return the array.
+- If the sum is greater than 9, set the last element to 0 and carry over the remaining 1 to the second last digit.
+- Repeat step 4 for all the digits until the first digit is reached.
+- If the first digit is also 9, set the first digit to 0, add 1 to the beginning of the array and return the array.
+
+## Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(n)$$
+
+## Code
+```
+class Solution {
+    func plusOne(_ digits: [Int]) -> [Int] {
+        var result = digits
+        var carry = 1
+        
+        for i in (0..<digits.count).reversed() {
+            let sum = digits[i] + carry
+            if sum <= 9 {
+                result[i] = sum
+                return result
+            } else {
+                result[i] = 0
+                carry = 1
+            }
+        }
+        
+        result.insert(1, at: 0)
+        return result
+    }
+}
+```
