@@ -29,3 +29,39 @@
 	<li><code>1 &lt;= n &lt;= 45</code></li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize two variables `a` and `b` to represent the number of ways to climb 1 step and 2 steps, respectively.
+- Loop from `2` to `n`, and for each `i`, update `a` to be `b`, and `b` to be the sum of its previous value and `a`. For each step `i`, the total number of ways to reach that step is the sum of the number of ways to reach the previous two steps.
+- Once the loop is complete, return the value of `b`.
+
+## Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(1)$$
+
+## Code
+```swift
+class Solution {
+    func climbStairs(_ n: Int) -> Int {
+        var a = 1
+        var b = 2
+        
+        if n == 1 { return a }
+        if n == 2 { return b }
+        
+        for i in 2..<n {
+            let tmp = b
+            b = a + b
+            a = tmp
+        }
+        
+        return b
+    }
+}
+```
