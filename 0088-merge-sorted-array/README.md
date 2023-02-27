@@ -44,3 +44,43 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
 <p>&nbsp;</p>
 <p><strong>Follow up: </strong>Can you come up with an algorithm that runs in <code>O(m + n)</code> time?</p>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize two pointers `i` and `j` pointing to the end of the `nums1` and `nums2` arrays respectively.
+- Initialize a variable `k` pointing to the last index of `nums1`.
+- While `i` and `j` are greater than or equal to zero, compare the elements at `nums1[i]` and `nums2[j]` and place the larger element at `nums1[k]`. Decrement `i` or `j` and `k` accordingly.
+- If there are still elements remaining in `nums2`, copy them to `nums1`.
+
+## Complexity
+- Time complexity:
+$$O(m + n)$$ - We iterate through all elements of both arrays.
+
+- Space complexity:
+$$O(1)$$ - We are not using any addiontal data structures
+
+## Code
+```swift
+class Solution {
+    func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
+        var i = m - 1, j = n - 1, k = m + n - 1
+        while i >= 0 && j >= 0 {
+            if nums1[i] > nums2[j] {
+                nums1[k] = nums1[i]
+                i -= 1
+            } else {
+                nums1[k] = nums2[j]
+                j -= 1
+            }
+            k -= 1
+        }
+        while j >= 0 {
+            nums1[k] = nums2[j]
+            j -= 1
+            k -= 1
+        }
+    }
+}
+```
