@@ -29,3 +29,59 @@
 
 <p>&nbsp;</p>
 <strong>Follow up:</strong> Recursive solution is trivial, could you do it iteratively?</div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize an empty stack and a variable to store the inorder traversal result.
+- Push the root node onto the stack.
+- While the stack is not empty or the current node is not `nil`, do the following:
+  - If the current node is not `nil`, push it onto the stack and move to its left child.
+  - If the current node is `nil`, pop the top node from the stack, process it, and move to its right child.
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - We visit each node exactly once
+
+- Space complexity:
+$$O(n)$$ - We use a stack to store the nodes
+
+## Code
+```swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func inorderTraversal(_ root: TreeNode?) -> [Int] {
+        var result = [Int]()
+        var stack = [TreeNode]()
+        var current = root
+        
+        while !stack.isEmpty || current != nil {
+            if current != nil {
+                stack.append(current!)
+                current = current?.left
+            } else {
+                let node = stack.popLast()
+                result.append(node!.val)
+                current = node?.right
+            }
+        }
+        
+        return result
+    }
+}
+```
