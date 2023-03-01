@@ -29,3 +29,55 @@
 	<li><code>-10<sup>4</sup> &lt;= Node.val &lt;= 10<sup>4</sup></code></li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- If both `p` and `q` are nil, return true.
+- If either `p` or `q` is nil, return false.
+- If the values of `p` and `q` are not equal, return false.
+- Recursively compare the left and right subtrees of both trees.
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - We visit each node exactly once.
+
+- Space complexity:
+$$O(h)$$ - The space required by the call stack if proportional to the height of the tree.
+
+## Code
+```swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func isSameTree(_ p: TreeNode?, _ q: TreeNode?) -> Bool {
+        if p == nil && q == nil {
+            return true
+        }
+        
+        if p == nil || q == nil {
+            return false
+        }
+        
+        if p!.val != q!.val {
+            return false
+        }
+        
+        return isSameTree(p?.left, q?.left) && isSameTree(p?.right, q?.right)
+    }
+}
+```
