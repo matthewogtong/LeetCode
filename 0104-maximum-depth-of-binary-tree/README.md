@@ -23,3 +23,49 @@
 	<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- If the node is `nil`, return 0.
+- Recursively compute the maximum depth of the `left` and `right` subtrees of the node.
+- Return the maximum of the two depths plus one (to account for the root node).
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - We visit each node once
+
+- Space complexity:
+$$O(h)$$ - The space required by the call stack is proportional to the height of the tree.
+
+## Code
+```swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func maxDepth(_ root: TreeNode?) -> Int {
+        if root == nil {
+            return 0
+        }
+        
+        let leftDepth = maxDepth(root?.left)
+        let rightDepth = maxDepth(root?.right)
+        
+        return max(leftDepth, rightDepth) + 1
+    }
+}
+```
