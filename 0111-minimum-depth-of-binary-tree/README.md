@@ -25,3 +25,56 @@
 	<li><code>-1000 &lt;= Node.val &lt;= 1000</code></li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- If the node is `nil`, return `0`.
+- If the node is a leaf, return `1`.
+- Recursively compute the minimum depth of the left and right subtrees of the node.
+- If one of the subtrees is `nil`, return the depth of the non-nil subtree plus one.
+- Otherwise, return the minimum depth of the two subtrees plus one.
+
+## Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(h)$$
+
+## Code
+```swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func minDepth(_ root: TreeNode?) -> Int {
+        if root == nil {
+            return 0
+        }
+        
+        if root?.left == nil {
+            return minDepth(root?.right) + 1
+        }
+        
+        if root?.right == nil {
+            return minDepth(root?.left) + 1
+        }
+        
+        return min(minDepth(root?.left), minDepth(root?.right)) + 1
+    }
+}
+```
