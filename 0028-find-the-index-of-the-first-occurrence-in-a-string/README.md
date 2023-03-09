@@ -24,3 +24,30 @@ The first occurrence is at index 0, so we return 0.
 	<li><code>haystack</code> and <code>needle</code> consist of only lowercase English characters.</li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Call the `range(of:)` method on `haystack`, passing in `needle` as the argument.
+- If the range is found, return the starting index of the range. Otherwise, return -1.
+
+## Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(1)$$
+
+## Code
+```swift
+class Solution {
+    func strStr(_ haystack: String, _ needle: String) -> Int {
+        guard let range = haystack.range(of: needle) else {
+            return -1
+        }
+        
+        return haystack.distance(from: haystack.startIndex, to: range.lowerBound)
+    }
+}
+```
