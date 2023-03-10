@@ -23,3 +23,46 @@
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> Could you optimize your algorithm to use only <code>O(rowIndex)</code> extra space?</p>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize an array `row` with the first two rows of Pascal's triangle, which are [1] and [1,1]
+- If `rowIndex` is less than or equal to 1, return the corresponding row from `row`
+- For `i` from 2 to `rowIndex`, calculate the values of the current row by adding the corresponding values from the previous row and appending them to `row`
+- Return `row`
+
+## Complexity
+- Time complexity:
+$$O(rowIndex^2)$$ - as we need to generate the previous rows of the triangle to generate the current row
+
+- Space complexity:
+$$O(rowIndex)$$ - as we only need to store the current row
+
+## Code
+```swift
+class Solution {
+    func getRow(_ rowIndex: Int) -> [Int] {
+        var row = [[1], [1, 1]]
+    
+        if rowIndex <= 1 {
+            return row[rowIndex]
+        }
+
+        for i in 2...rowIndex {
+            var currentRow = [1]
+
+            for j in 1..<i {
+                let value = row[i - 1][j - 1] + row[i - 1][j]
+                currentRow.append(value)
+            }
+
+            currentRow.append(1)
+            row.append(currentRow)
+        }
+
+        return row[rowIndex]
+    }
+}
+```
