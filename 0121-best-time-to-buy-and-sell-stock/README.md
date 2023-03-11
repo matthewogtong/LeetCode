@@ -28,3 +28,39 @@ Note that buying on day 2 and selling on day 1 is not allowed because you must b
 	<li><code>0 &lt;= prices[i] &lt;= 10<sup>4</sup></code></li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize two variables, `minPrice` and `maxProfit`, to `Int.max` and 0, respectively
+- Loop through the `prices` array
+- For each price, calculate the potential profit by subtracting the `minPrice` from the current price
+- If the potential profit is greater than `maxProfit`, update `maxProfit`
+- If the current price is less than `minPrice`, update `minPrice` to the current price
+- Return `maxProfit`
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - n is the length of the `prices` array
+
+- Space complexity:
+$$O(1)$$ - we are using only constant extra space
+
+## Code
+```swift
+class Solution {
+    func maxProfit(_ `prices`: [Int]) -> Int {
+        var minPrice = Int.max
+        var maxProfit = 0
+        
+        for price in prices {
+            let potentialProfit = price - minPrice
+            maxProfit = max(maxProfit, potentialProfit)
+            minPrice = min(minPrice, price)
+        }
+        
+        return maxProfit
+    }
+}
+```
