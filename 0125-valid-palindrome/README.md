@@ -33,3 +33,29 @@ Since an empty string reads the same forward and backward, it is a palindrome.
 	<li><code>s</code> consists only of printable ASCII characters.</li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- First, we need to convert the given string to lowercase using the `lowercased()` method in Swift.
+- Next, we can remove all non-alphanumeric characters using regular expressions and the `replacingOccurrences()` method. We can use the regular expression `"[^a-z0-9]"` to match any character that is not a lowercase letter or a digit.
+- Finally, we can check if the resulting string is equal to its reverse using the `reversed()` method and the `==` operator.
+
+## Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(n)$$
+
+## Code
+```swift
+class Solution {
+    func isPalindrome(_ s: String) -> Bool {
+        let lowercaseString = s.lowercased()
+        let alphanumericString = lowercaseString.replacingOccurrences(of: "[^a-z0-9]", with: "", options: .regularExpression)
+        return alphanumericString == String(alphanumericString.reversed())
+    }
+}
+```
