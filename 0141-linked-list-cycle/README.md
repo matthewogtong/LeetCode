@@ -38,3 +38,53 @@
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> Can you solve it using <code>O(1)</code> (i.e. constant) memory?</p>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize two pointers, slow and fast, to point to the head of the linked list.
+- Traverse the linked list using the slow and fast pointers until one of the following conditions is met:
+    - The fast pointer encounters a null value, which means that the linked list does not have a cycle. Return false in this case.
+    - The fast pointer catches up with the slow pointer, which means that the linked list has a cycle. Return true in this case.
+- Return the result
+
+## Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(1)$$
+
+## Code
+```swift
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
+
+class Solution {
+    func hasCycle(_ head: ListNode?) -> Bool {
+        var slow = head
+        var fast = head
+        
+        while fast != nil && fast?.next != nil {
+            slow = slow?.next
+            fast = fast?.next?.next
+            
+            if slow === fast {
+                return true
+            }
+        }
+        
+        return false
+    }
+}
+```
