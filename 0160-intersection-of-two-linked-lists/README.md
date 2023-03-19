@@ -62,3 +62,48 @@ Explanation: The two lists do not intersect, so return null.
 
 <p>&nbsp;</p>
 <strong>Follow up:</strong> Could you write a solution that runs in <code>O(m + n)</code> time and use only <code>O(1)</code> memory?</div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize two pointers, `pointerA` and `pointerB`, to the head of list A and list B
+- Traverse both lists with the two pointers until they meet or reach the end of their lists.
+- If one pointer reaches the end of its list, reset it to the head of the other list.
+- If both pointers reach the end of their lists and haven't met, return `nil` since there is no intersection.
+
+## Complexity
+- Time complexity:
+$$O(m + n)$$ - `m` and `n` are the lengths of the two lists
+
+- Space complexity:
+$$O(1)$$ - we are only using two pointers for this solution
+
+## Code
+```swift
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public var val: Int
+ *     public var next: ListNode?
+ *     public init(_ val: Int) {
+ *         self.val = val
+ *         self.next = nil
+ *     }
+ * }
+ */
+
+class Solution {
+    func getIntersectionNode(_ headA: ListNode?, _ headB: ListNode?) -> ListNode? {
+        var pointerA = headA
+        var pointerB = headB
+
+        while pointerA !== pointerB {
+            pointerA = (pointerA == nil) ? headB : pointerA?.next
+            pointerB = (pointerB == nil) ? headA : pointerB?.next
+        }
+
+        return pointerA
+    }
+}
+```
