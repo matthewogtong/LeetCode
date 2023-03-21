@@ -21,3 +21,39 @@
 
 <p>&nbsp;</p>
 <strong>Follow-up:</strong> Could you solve the problem in linear time and in <code>O(1)</code> space?</div>
+
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize a `candidate` variable to store the current majority element and a count variable to track the occurrence of the candidate
+- Iterate through the array, updating the `candidate` and `count` variables based on the current element
+- If the count is zero, set the current element as the new candidate and reset the count to 1
+- If the current element matches the candidate, increment the count; otherwise, decrement the count
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - `n` is the length of the input array
+
+- Space complexity:
+$$O(1)$$ - solution only uses constant addiotnal space for `candidate` and `count` variables`
+
+## Code
+```swift
+class Solution {
+    func majorityElement(_ nums: [Int]) -> Int {
+        var candidate: Int?
+        var count = 0
+        
+        for num in nums {
+            if count == 0 {
+                candidate = num
+            }
+            count += (num == candidate) ? 1 : -1
+        }
+        
+        return candidate!
+    }
+}
+```
