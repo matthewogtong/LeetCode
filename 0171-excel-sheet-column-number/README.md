@@ -40,3 +40,34 @@ AB -&gt; 28
 	<li><code>columnTitle</code> is in the range <code>["A", "FXSHRXW"]</code>.</li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize a variable `result` to 0
+- Iterate through each character in the input string `columnTitle`
+- For each character, multiply the current value of `result` by 26 and add the numerical value of the character minus the ASCII value of 'A' plus 1
+- Return the final value of `result`
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - `n` is the length of the input string. We iterate through each character in the string once
+
+- Space complexity:
+$$O(n)$$
+
+## Code
+```swift
+class Solution {
+    func titleToNumber(_ columnTitle: String) -> Int {
+        var result = 0
+    
+        for char in columnTitle {
+            result = result * 26 + Int(char.asciiValue! - Character("A").asciiValue!) + 1
+        }
+
+        return result
+    }
+}
+```
