@@ -38,3 +38,37 @@
 
 <p>&nbsp;</p>
 <strong>Follow up:</strong> If this function is called many times, how would you optimize it?</div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize a count variable to keep track of the number of '1' bits.
+- Iterate through each bit in the integer using a loop that runs 32 times (as the input is a binary string of length 32).
+- In each iteration, check if the current bit is '1' using bitwise AND operation.
+- If the current bit is '1', increment the count variable.
+
+## Complexity
+- Time complexity:
+$$O(1)$$
+
+- Space complexity:
+$$O(1)$$
+
+## Code
+```swift
+class Solution {
+    func hammingWeight(_ n: Int) -> Int {
+        var count = 0
+        var num = n
+
+        for _ in 0..<32 {
+            if num & 1 == 1 {
+                count += 1
+            }
+            num >>= 1
+        }
+        return count
+    }
+}
+```
