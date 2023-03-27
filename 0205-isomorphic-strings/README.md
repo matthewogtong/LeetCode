@@ -24,3 +24,44 @@
 	<li><code>s</code> and <code>t</code> consist of any valid ascii character.</li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Create two dictionaries, one for `s` to `t` mappings and one for `t` to `s` mappings
+- Loop through each character in the strings, and add mappings to the dictionaries if they don't already exist
+- If a mapping already exists, check if it matches the current mapping. If not, return false
+- If the loop completes without any issues, return true
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - we iterate through each character in the strings once
+
+- Space complexity:
+$$O(n)$$
+
+## Code
+```swift
+class Solution {
+    func isIsomorphic(_ s: String, _ t: String) -> Bool {
+        guard s.count == t.count else { return false }
+    
+        var sToT = [Character: Character]()
+        var tToS = [Character: Character]()
+        
+        for (sChar, tChar) in zip(s, t) {
+            if let mappedTChar = sToT[sChar], mappedTChar != tChar {
+                return false
+            }
+            if let mappedSChar = tToS[tChar], mappedSChar != sChar {
+                return false
+            }
+            sToT[sChar] = tChar
+            tToS[tChar] = sChar
+        }
+        
+        return true
+    }
+}
+```
