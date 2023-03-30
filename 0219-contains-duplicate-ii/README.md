@@ -28,3 +28,37 @@
 	<li><code>0 &lt;= k &lt;= 10<sup>5</sup></code></li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Create a dictionary to store the last index at which each value appears in the array
+- Loop through the array and check if the current value exists in the dictionary and if the difference between the current index and the stored index is less than or equal to k
+- If the condition is met, return true. Otherwise, update the dictionary with the current index for the current value
+- If no duplicate value is found within the range, return false
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - `n` is the length of the input array nums. We loop through the array once, and dictionary look-up and insertion operations take average O(1) time
+
+- Space complexity:
+$$O(n)$$
+
+## Code
+```swift
+class Solution {
+    func containsNearbyDuplicate(_ nums: [Int], _ k: Int) -> Bool {
+        var valueToIndex: [Int: Int] = [:]
+
+        for (index, value) in nums.enumerated() {
+            if let lastIndex = valueToIndex[value], index - lastIndex <= k {
+                return true
+            }
+            valueToIndex[value] = index
+        }
+
+        return false
+    }
+}
+```
