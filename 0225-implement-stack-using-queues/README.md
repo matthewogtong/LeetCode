@@ -46,3 +46,64 @@ myStack.empty(); // return False
 <p>&nbsp;</p>
 <p><strong>Follow-up:</strong> Can you implement the stack using only one queue?</p>
 </div>
+
+</br>
+
+# Solution Details
+
+## Approach
+- Use a single queue named `queue` to simulate the stack behavior.
+- During the push operation, enqueue the new element to the front of the queue by dequeuing all existing elements and enqueuing them after the new element.
+- For the pop operation, simply dequeue from the front of the queue.
+- For the top operation, return the element at the front of the queue.
+- The empty operation checks if the queue is empty.
+
+## Complexity
+- Time complexity:
+$$O(1)$$ - for top, pop, and empty operations
+$$O(n)$$ - for push operation, where n is the number of elements in the stack
+
+- Space complexity:
+$$O(n)$$
+
+## Code
+```swift
+
+class MyStack {
+    private var queue: [Int]
+
+    init() {
+        queue = []
+    }
+
+    func push(_ x: Int) {
+        let previousCount = queue.count
+        queue.append(x)
+        for _ in 0..<previousCount {
+            let temp = queue.removeFirst()
+            queue.append(temp)
+        }
+    }
+
+    func pop() -> Int {
+        return queue.removeFirst()
+    }
+
+    func top() -> Int {
+        return queue.first ?? -1
+    }
+
+    func empty() -> Bool {
+        return queue.isEmpty
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * let obj = MyStack()
+ * obj.push(x)
+ * let ret_2: Int = obj.pop()
+ * let ret_3: Int = obj.top()
+ * let ret_4: Bool = obj.empty()
+ */
+```
