@@ -27,3 +27,53 @@
 	<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Create a function called `invertTree` which accepts a binary tree node as its input parameter
+- Check if the input node is `nil`, which means it's an empty tree or a leaf node, and return the input node as is
+- Recursively call the `invertTree` function for the left and right child of the input node
+- Swap the left and right children of the input node
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - `n` is the number of nodes in the tree
+
+- Space complexity:
+$$O(h)$$ - `h` is the height of the tree, as it represents the maximum number of function calls stored on the call stack
+
+## Code
+```swift
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func invertTree(_ root: TreeNode?) -> TreeNode? {
+        if root == nil {
+            return nil
+        }
+        
+        let left = invertTree(root?.left)
+        let right = invertTree(root?.right)
+        
+        root?.left = right
+        root?.right = left
+        
+        return root
+    }
+}
+```
