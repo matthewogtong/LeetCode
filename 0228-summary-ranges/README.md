@@ -43,3 +43,47 @@
 	<li><code>nums</code> is sorted in ascending order.</li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Initialize two pointers, `start` and `end`, both initially set to 0
+- Iterate through the `nums` array, incrementing `end` until the next integer is not consecutive with the current integer
+- When the consecutive streak breaks, create a range string from the current `start` and `end` pointers and append it to the result array
+- Update the `start` pointer to the current `end` pointer, and continue iterating until the end of the array
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - `n` is the length of the input array, as we ar eiterating through the entire array once
+
+- Space complexity:
+$$O(n)$$
+
+## Code
+```swift
+class Solution {
+    func summaryRanges(_ nums: [Int]) -> [String] {
+        var result: [String] = []
+        let n = nums.count
+        var start = 0
+
+        while start < n {
+            var end = start
+            while end + 1 < n && nums[end + 1] == nums[end] + 1 {
+                end += 1
+            }
+
+            if start == end {
+                result.append("\(nums[start])")
+            } else {
+                result.append("\(nums[start])->\(nums[end])")
+            }
+
+            start = end + 1
+        }
+
+        return result
+    }
+}
+```
