@@ -46,3 +46,68 @@ myQueue.empty(); // return false
 <p>&nbsp;</p>
 <p><strong>Follow-up:</strong> Can you implement the queue such that each operation is <strong><a href="https://en.wikipedia.org/wiki/Amortized_analysis" target="_blank">amortized</a></strong> <code>O(1)</code> time complexity? In other words, performing <code>n</code> operations will take overall <code>O(n)</code> time even if one of those operations may take longer.</p>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Use two stacks, `inputStack` and `outputStack`. `inputStack` will be responsible for holding the elements as they are pushed onto the queue, while `outputStack` will be responsible for maintaining the correct order of elements when popping and peeking
+- During the push operation, we simply push the element onto the `inputStack`
+- For the `pop` and `peek` operations, if the `outputStack` is empty, we transfer all elements from `inputStack` to `outputStack`, reversing their order in the process. Then, we perform the pop or peek operation on the `outputStack`
+- The empty operation checks if both the `inputStack` and `outputStack` are empty.
+
+## Complexity
+- Time complexity:
+$$O(1)$$
+
+- Space complexity:
+$$O(n)$$
+
+## Code
+```swift
+class MyQueue {
+
+    private var inputStack: [Int]
+    private var outputStack: [Int]
+
+    init() {
+        inputStack = []
+        outputStack = []
+    }
+
+    func push(_ x: Int) {
+        inputStack.append(x)
+    }
+
+    func pop() -> Int {
+        if outputStack.isEmpty {
+            while !inputStack.isEmpty {
+                outputStack.append(inputStack.popLast()!)
+            }
+        }
+        return outputStack.popLast()!
+    }
+
+    func peek() -> Int {
+        if outputStack.isEmpty {
+            while !inputStack.isEmpty {
+                outputStack.append(inputStack.popLast()!)
+            }
+        }
+        return outputStack.last!
+    }
+
+    func empty() -> Bool {
+        return inputStack.isEmpty && outputStack.isEmpty
+    }
+}
+
+/**
+ * Your MyQueue object will be instantiated and called as such:
+ * let obj = MyQueue()
+ * obj.push(x)
+ * let ret_2: Int = obj.pop()
+ * let ret_3: Int = obj.peek()
+ * let ret_4: Bool = obj.empty()
+ */
+```
