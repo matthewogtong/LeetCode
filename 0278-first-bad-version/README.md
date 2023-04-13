@@ -29,3 +29,45 @@ Then 4 is the first bad version.
 	<li><code>1 &lt;= bad &lt;= n &lt;= 2<sup>31</sup> - 1</code></li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Implement the binary search algorithm to minimize the number of calls to the API `isBadVersion(version)`
+- Define the initial search range using two pointers, `left` and `right`, starting at 1 and n respectively
+- Calculate the middle point of the search range (middle) and check if it's a bad version using the API `isBadVersion(version)`
+- Update the search range accordingly based on the result of the `isBadVersion(version)` call
+
+## Complexity
+- Time complexity:
+$$O(log n)$$ - we are using binary search
+
+- Space complexity:
+$$O(1)$$ - only using a constant amount of extra space for our variables
+
+## Code
+```swift
+/**
+ * The knows API is defined in the parent class VersionControl.
+ *     func isBadVersion(_ version: Int) -> Bool{}
+ */
+
+class Solution : VersionControl {
+    func firstBadVersion(_ n: Int) -> Int {
+        var left = 1
+        var right = n
+        
+        while left < right {
+            let middle = left + (right - left) / 2
+            if isBadVersion(middle) {
+                right = middle
+            } else {
+                left = middle + 1
+            }
+        }
+        
+        return left
+    }
+}
+```
