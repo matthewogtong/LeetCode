@@ -20,3 +20,36 @@
 
 <p>&nbsp;</p>
 <strong>Follow up:</strong> Could you minimize the total number of operations done?</div>
+</br>
+
+# Solution Details
+
+## Approach
+- Use two pointers, `left` and `right`, to iterate through the array
+- Initialize both pointers to 0
+- Iterate through the array using the `right` pointer, looking for non-zero elements
+- When a non-zero element is found, swap its value with the value at the `left` pointer and increment the `left` pointer
+- Continue iterating until the `right` pointer reaches the end of the array
+
+## Complexity
+- Time complexity:
+$$O(n)$$ - `n` is the length of the input array
+
+- Space complexity:
+$$O(1)$$
+
+## Code
+```swift
+class Solution {
+    func moveZeroes(_ nums: inout [Int]) {
+        var left = 0
+
+        for right in 0..<nums.count {
+            if nums[right] != 0 {
+                nums.swapAt(left, right)
+                left += 1
+            }
+        }
+    }
+}
+```
