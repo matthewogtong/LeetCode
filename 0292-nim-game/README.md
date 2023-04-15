@@ -40,3 +40,26 @@ In all outcomes, your friend wins.
 	<li><code>1 &lt;= n &lt;= 2<sup>31</sup> - 1</code></li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Use the modulo operator to check if the heap size `n` is divisible by 4
+- If the heap size is not divisible by 4, return true, otherwise return false
+
+## Complexity
+- Time complexity:
+$$O(1)$$
+
+- Space complexity:
+$$O(1)$$
+
+## Code
+```swift
+class Solution {
+    func canWinNim(_ n: Int) -> Bool {
+        return n % 4 != 0
+    }
+}
+```
