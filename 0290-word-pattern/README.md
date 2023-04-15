@@ -33,3 +33,54 @@
 	<li>All the words in <code>s</code> are separated by a <strong>single space</strong>.</li>
 </ul>
 </div>
+</br>
+
+# Solution Details
+
+## Approach
+- Split the input string `s` into an array of words.
+- Check if the pattern and the words in 's' have the same length. If not, return false.
+- Create two dictionaries to store bijections for pattern characters and words in `s`.
+- Iterate through the pattern and words, and store bijections in the dictionaries.
+
+## Complexity
+- Time complexity:
+$$O(n)$$
+
+- Space complexity:
+$$O(n)$$
+
+## Code
+```swift
+class Solution {
+    func wordPattern(_ pattern: String, _ s: String) -> Bool {
+        let words = s.split(separator: " ").map { String($0) }
+        if pattern.count != words.count { return false }
+
+        var patternToWord = [Character: String]()
+        var wordToPattern = [String: Character]()
+
+        for (index, char) in pattern.enumerated() {
+            let word = words[index]
+
+            if let existingWord = patternToWord[char] {
+                if existingWord != word {
+                    return false
+                }
+            } else {
+                patternToWord[char] = word
+            }
+
+            if let existingPattern = wordToPattern[word] {
+                if existingPattern != char {
+                    return false
+                }
+            } else {
+                wordToPattern[word] = char
+            }
+        }
+
+        return true
+    }
+}
+```
